@@ -1,7 +1,5 @@
 # BalloonTravel
 
-# BalloonTravel
-
 ## 해야하는 일
 
 1. 플레이어 움직임 구현

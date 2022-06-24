@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("시간 활성화");
                 menu.SetActive(false);
                 Paused = false;
+                
             }
             else
             {

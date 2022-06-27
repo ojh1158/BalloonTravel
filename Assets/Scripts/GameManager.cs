@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool Paused = false;
     public GameObject menu;
      
     void Update()
@@ -13,26 +12,26 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
 
-
+            //메뉴 false
             if (menu.activeSelf)
             {
-                Time.timeScale = 1;
+                Time.timeScale = 1.0f;
                 Debug.Log("시간 활성화");
                 menu.SetActive(false);
-                Paused = false;
                 
             }
+            //메뉴 true
             else
             {
-                Time.timeScale = 0;
+                Time.timeScale = 0f;
                 Debug.Log("시간 비활성화");
                 menu.SetActive(true);
-                Paused = true;
             }
    
         }
         
     }
+
 
 
     public void GameExit()

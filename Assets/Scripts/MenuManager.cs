@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     public GameObject menu;
-     
+
     void Update()
     {
         //메뉴 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1.0f;
                 Debug.Log("시간 활성화");
                 menu.SetActive(false);
-                
+
             }
             //메뉴 true
             else
@@ -27,12 +27,17 @@ public class GameManager : MonoBehaviour
                 Debug.Log("시간 비활성화");
                 menu.SetActive(true);
             }
-   
+
         }
-        
+
     }
 
-
+    public void Restart()
+    {
+        //게임 시간 활성화
+        Debug.Log("시간 활성화");
+        Time.timeScale = 1.0f;
+    }
 
     public void GameExit()
     {

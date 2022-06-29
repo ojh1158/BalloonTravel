@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,13 +9,16 @@ public class Enemy : MonoBehaviour
     public float ViewDistance;
     public LayerMask targetMask;
 
+    public Transform target;
+    private NavMeshAgent _enemy;
 
-    //void Start()
-    //{
-        
-    //}
 
-    void Update()
+    void Start()
+    {
+        _enemy = GetComponent<NavMeshAgent>();
+    }
+
+    void FixedUpdate()
     {
         View();
     }
@@ -30,32 +34,29 @@ public class Enemy : MonoBehaviour
         Vector3 _leftBoundary = BoundaryAngle(-AngleOfField * 0.5f);
         Vector3 _rightBoundary = BoundaryAngle(AngleOfField * 0.5f);
 
-        //Debug.DrawRay(transform.position + transform.up, _leftBoundary, Color.red);
-        //Debug.DrawRay(transform.position + transform.up, _rightBoundary, Color.red);
+        // 시야각 표시
+        // Debug.DrawRay(transform.position + transform.up, _leftBoundary, Color.red);
+        // Debug.DrawRay(transform.position + transform.up, _rightBoundary, Color.red);
 
-        Collider[] _target = Physics.OverlapSphere(transform.position, ViewDistance, targetMask);
 
-        for (int i = 0; i < _target.Length; i++)
+        Vector3 _direction = (target.position - transform.position).normalized;
+        float _angle = Vector3.Angle(_direction, transform.forward);
+
+        if (_angle < AngleOfField * 0.5f)
         {
-            Transform _targetTf = _target[i].transform;
-            if (_targetTf.name == "Player")
+            RaycastHit _hit;
+            if (Physics.Raycast(transform.position + transform.up, _direction, out _hit, ViewDistance) && _hit.transform.name == "Player")
             {
-                Vector3 _direction = (_targetTf.position - transform.position).normalized;
-                float _angle = Vector3.Angle(_direction, transform.forward);
+                _enemy.SetDestination(target.position);
+                // Debug.Log("플레이어가 시야 내에 있습니다.");
 
-                if (_angle < AngleOfField * 0.5f)
-                {
-                    RaycastHit _hit;
-                    if (Physics.Raycast(transform.position + transform.up, _direction, out _hit, ViewDistance))
-                    {
-                        if (_hit.transform.name == "Player")
-                        {
-                            Debug.Log("플레이어가 시야 내에 있습니다.");
-                            //Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
-
-                        }
-                    }
-                }
+                // 플레이어의 방향 표시
+                // Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
+            }
+            else
+            {
+                _enemy.ResetPath();
+                // Debug.Log("대기 중");
             }
         }
     }

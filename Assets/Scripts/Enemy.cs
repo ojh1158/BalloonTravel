@@ -5,12 +5,17 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("AI")]
     public float AngleOfField;
     public float ViewDistance;
     public LayerMask targetMask;
 
     public Transform target;
-    private NavMeshAgent _enemy;
+    public NavMeshAgent _enemy;
+
+    [Header("전투 관련 값")]
+    public float HP;
+    public float Damage;
 
 
     void Start()
@@ -31,8 +36,8 @@ public class Enemy : MonoBehaviour
 
     private void View()
     {
-        Vector3 _leftBoundary = BoundaryAngle(-AngleOfField * 0.5f);
-        Vector3 _rightBoundary = BoundaryAngle(AngleOfField * 0.5f);
+        //Vector3 _leftBoundary = BoundaryAngle(-AngleOfField * 0.5f);
+        //Vector3 _rightBoundary = BoundaryAngle(AngleOfField * 0.5f);
 
         // 시야각 표시
         // Debug.DrawRay(transform.position + transform.up, _leftBoundary, Color.red);
@@ -48,15 +53,15 @@ public class Enemy : MonoBehaviour
             if (Physics.Raycast(transform.position + transform.up, _direction, out _hit, ViewDistance) && _hit.transform.name == "Player")
             {
                 _enemy.SetDestination(target.position);
-                // Debug.Log("플레이어가 시야 내에 있습니다.");
+                Debug.Log("플레이어가 시야 내에 있습니다.");
 
-                // 플레이어의 방향 표시
+                //플레이어의 방향 표시
                 // Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
             }
             else
             {
                 _enemy.ResetPath();
-                // Debug.Log("대기 중");
+                Debug.Log("대기 중");
             }
         }
     }

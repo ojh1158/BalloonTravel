@@ -40,6 +40,13 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+
+
+    public void Retry()
+    {
+        Debug.Log("다시하기 누름");
+    }
+
     public void GameExit()
     {
 

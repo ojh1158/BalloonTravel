@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    
-    
+
+
     public GameObject Text_Ui; //대화창
     public Text text; //채팅
     public Text CharacterName; //캐릭터 이름
@@ -15,12 +15,10 @@ public class DialogueManager : MonoBehaviour
     
     
     
-    
     public TextAsset txt;
     string[,] Sentence;
-    int lineSize, rowSize;
-
-
+    public int lineSize;
+    public int rowSize;
 
     void Start()
     {
@@ -34,59 +32,62 @@ public class DialogueManager : MonoBehaviour
         // 한 줄에서 탭으로 나눔
         for (int i = 0; i < lineSize; i++)
         {
-            string[] row = line[i].Split('\t');
-            for (int ii = 0; ii < rowSize; ii++)
-            {
-                if (ii == rowSize - 1) Sentence[i, ii] = row[ii].Substring(0, row[ii].Length - 1);
-                else Sentence[i, ii] = row[ii];
-            } 
+                 string[] row = line[i].Split ("\t");
+                 for(int j = 0; j < rowSize; j++) Sentence[i, j] = row[j];
         }
 
     }
- public void TalkStart() 
-    {
+
+
+
+    public void TalkStart() 
+    {        
+        
         Text_Ui.SetActive(true);
         clickCount = 0;
         text.text = Sentence[0, 1];
+        CharacterName.text = Sentence[0, 0];
+
     }
-    // Update is called once per frame
     void Update()
     {
+        
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (clickCount == 0)
             {
-                text.text = Sentence[0, 1];
+                text.text = Sentence[1, 1];
+                CharacterName.text = Sentence[1, 0];
                 clickCount++;
             }
 
             else if (clickCount == 1)
             {
-                text.text = Sentence[1, 1];
+                text.text = Sentence[2, 1];
+                CharacterName.text = Sentence[2, 0];
                 clickCount++;
             }
 
             else if (clickCount == 2)
             {
-                text.text = Sentence[2, 1];
+                text.text = Sentence[3, 1];
+                CharacterName.text = Sentence[3, 0];
                 clickCount++;
 
             }
             else if (clickCount == 3)
             {
-                text.text = Sentence[3, 1];
+                text.text = Sentence[4, 1];
+                CharacterName.text = Sentence[4, 0];
                 clickCount++;
             }
             else if (clickCount == 4)
             {
-                text.text = Sentence[4, 1];
-                clickCount++;
-            }
-            else if (clickCount == 5)
-            {
-                text.text = "";
+                text.text = Sentence[5, 1];
+                CharacterName.text = Sentence[5, 0];
                 Text_Ui.SetActive(false);
-                clickCount = 0;                
+                clickCount = 0;
             }
         }
     }

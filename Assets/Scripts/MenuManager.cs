@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject menu;
 
+
     void Update()
     {
         //메뉴 
@@ -37,6 +38,13 @@ public class MenuManager : MonoBehaviour
         //게임 시간 활성화
         Debug.Log("시간 활성화");
         Time.timeScale = 1.0f;
+    }
+
+
+
+    public void Retry()
+    {
+        Debug.Log("다시하기 누름");
     }
 
     public void GameExit()

@@ -371,9 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 184250911}
   target: {fileID: 184250912}
-  offset: {x: 0, y: 0, z: 0}
-  test_con: {x: 0, y: 0, z: 0}
-  IN: 0
+  offset: {x: -5, y: 4, z: -5}
   RotateAngle: 45
 --- !u!1 &105161136
 GameObject:

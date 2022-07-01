@@ -5,16 +5,12 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
-
     public GameObject Text_Ui; //대화창
     public Text text; //채팅
     public Text CharacterName; //캐릭터 이름
     public bool isAction; //이건 미정
     int clickCount = 0;//클릭횟수 카운터 
-    
-    
-    
+
     public TextAsset txt;
     string[,] Sentence;
     public int lineSize;
@@ -32,27 +28,21 @@ public class DialogueManager : MonoBehaviour
         // 한 줄에서 탭으로 나눔
         for (int i = 0; i < lineSize; i++)
         {
-                 string[] row = line[i].Split ("\t");
-                 for(int j = 0; j < rowSize; j++) Sentence[i, j] = row[j];
+            string[] row = line[i].Split("\t");
+            for (int j = 0; j < rowSize; j++) Sentence[i, j] = row[j];
         }
-
     }
 
-
-
-    public void TalkStart() 
-    {        
-        
+    public void TalkStart()
+    {
         Text_Ui.SetActive(true);
         clickCount = 0;
         text.text = Sentence[0, 1];
         CharacterName.text = Sentence[0, 0];
-
     }
+
     void Update()
     {
-        
-        
         if (Input.GetMouseButtonDown(0))
         {
             if (clickCount == 0)
@@ -91,5 +81,4 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-
 }

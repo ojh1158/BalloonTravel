@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     public float HP;
     public float Damage;
 
-
     void Start()
     {
         _enemy = GetComponent<NavMeshAgent>();

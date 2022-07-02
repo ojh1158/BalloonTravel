@@ -15,12 +15,12 @@ public class CameraSpinner : MonoBehaviour
         transform.position = target.position;
         Vector3 PlayerPosition = Player.transform.position;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             transform.RotateAround(PlayerPosition, Vector3.up, -RotateAngle);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             transform.RotateAround(PlayerPosition, Vector3.up, RotateAngle);
         }

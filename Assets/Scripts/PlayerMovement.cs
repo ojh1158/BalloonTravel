@@ -23,9 +23,13 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement.y = 0;
         horizontalMovement = Vector3.Normalize(horizontalMovement);
         verticalMovement = Quaternion.Euler(new Vector3(0, 90, 0)) * horizontalMovement;
+    }
 
-        if (GameManager.isMoving == true)
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
+            Move();
             animator.SetBool("isMoving", true);
         }
         else
@@ -34,22 +38,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        if (Input.anyKey)
-        {
-            Move();
-        }
-        else
-        {
-            GameManager.isMoving = false;
-        }
-    }
-
     void Move()
     {
-        GameManager.isMoving = true;
-
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         Vector3 rightMovement = verticalMovement * speed * Time.deltaTime * Input.GetAxis("Horizontal");

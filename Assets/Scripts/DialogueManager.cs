@@ -8,7 +8,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject Text_Ui; //대화창
     public Text text; //채팅
     public Text CharacterName; //캐릭터 이름
-    public bool isAction; //이건 미정 
     public GameObject event_Chapters; // 판정 제거용
                 
     int Dialog_Content = 0;

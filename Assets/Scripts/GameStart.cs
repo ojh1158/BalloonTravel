@@ -7,6 +7,7 @@ public class GameStart : MonoBehaviour
 {
 
     public GameObject GameStart_Ui;
+    public GameObject eventwall;
     public Image Fade;
  
     float fadeCount = 1.0f; //초기화 알파갚 최대
@@ -39,6 +40,7 @@ public class GameStart : MonoBehaviour
             if (fadeCount < 0.0f)
             {
                 GameStart_Ui.gameObject.SetActive(false);
+                eventwall.gameObject.SetActive(false);
             }
         }
     }

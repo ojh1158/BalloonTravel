@@ -8,77 +8,142 @@ public class DialogueManager : MonoBehaviour
     public GameObject Text_Ui; //대화창
     public Text text; //채팅
     public Text CharacterName; //캐릭터 이름
-    public bool isAction; //이건 미정
-    int clickCount = 0;//클릭횟수 카운터 
+    public GameObject event_Chapters; // 판정 제거용
+                
+    int Dialog_Content = 0;
+    int Dialog_Name = 0;
 
     public TextAsset txt;
-    string[,] Sentence;
     public int lineSize;
     public int rowSize;
 
-    void Start()
-    {
-        // 엔터단위와 탬으로 나눠서 배열의 크기 조정
-        string currentText = txt.text.Substring(0, txt.text.Length - 1);
-        string[] line = currentText.Split('\n');
-        lineSize = line.Length;
-        rowSize = line[0].Split('\t').Length;
-        Sentence = new string[lineSize, rowSize];
+    public GameObject Npc1;
+    public GameObject Npc1_1;
 
-        // 한 줄에서 탭으로 나눔
-        for (int i = 0; i < lineSize; i++)
+    public void Event_1_1() 
+    {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+
+            Dialog_Content = 28;
+            Dialog_Name = 28;
+
+            Text_Ui.SetActive(true);
+            text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+            CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+            Dialog_Content++;
+            Dialog_Name++;
+            Time.timeScale = 0f;
+            StartCoroutine(EventText());
+        
+    }
+
+    IEnumerator EventText()
+    {   
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");         
+        //Debug.Log("코루틴 시작 부분");
+        while (true)
+        { 
+            yield return null;
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+
+
+                Dialog_Content++;
+                Dialog_Name++;
+
+                text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+                CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+                
+                if (Dialog_Content == 37)
+                {
+                    Dialog_Content = 0;
+                    Dialog_Name = 0;
+                    Time.timeScale = 1f;
+                    Text_Ui.SetActive(false);
+                    event_Chapters.SetActive(false);
+                    yield break;
+                }
+   
+            }
+        }
+
+    }
+    public void Event_1_Sing()
+    {
+        Text_Ui.SetActive(true);
+        text.text = "↓ 인계 \n 마을 ↑";
+        CharacterName.text = "표지판";
+    }
+
+    public void Event_1_Sing_Out()
+    {
+        Text_Ui.SetActive(false);
+    }
+
+    public void NPC1_1()
+    {
+        Text_Ui.SetActive(true);
+        text.text = "문제를 까먹었니? \n'파인 애플의 색깔은?'";
+        CharacterName.text = "주민1";
+    }
+
+    public void NPC1()
+    {
+
+        Time.timeScale = 0f;
+
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+
+        Dialog_Content = 39;
+        Dialog_Name = 39;
+
+        Text_Ui.SetActive(true);
+        text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+        CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+        Dialog_Content++;
+        Dialog_Name++;
+        StartCoroutine(npc1());
+    }
+
+    IEnumerator npc1()
+    {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+        while (true)
         {
-            string[] row = line[i].Split("\t");
-            for (int j = 0; j < rowSize; j++) Sentence[i, j] = row[j];
+            yield return null;
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Dialog_Content++;
+                Dialog_Name++;
+
+                text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+                CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+
+                if (Dialog_Content == 55)
+                {
+
+                    Dialog_Content = 0;
+                    Dialog_Name = 0;
+                    Time.timeScale = 1f;
+                    Text_Ui.SetActive(false);
+                    Npc1.SetActive(false);
+                    Npc1_1.SetActive(true);
+
+                }
+
+
+            }
         }
     }
 
-    public void TalkStart()
-    {
-        Text_Ui.SetActive(true);
-        clickCount = 0;
-        text.text = Sentence[0, 1];
-        CharacterName.text = Sentence[0, 0];
-    }
+
+
+
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (clickCount == 0)
-            {
-                text.text = Sentence[1, 1];
-                CharacterName.text = Sentence[1, 0];
-                clickCount++;
-            }
 
-            else if (clickCount == 1)
-            {
-                text.text = Sentence[2, 1];
-                CharacterName.text = Sentence[2, 0];
-                clickCount++;
-            }
-
-            else if (clickCount == 2)
-            {
-                text.text = Sentence[3, 1];
-                CharacterName.text = Sentence[3, 0];
-                clickCount++;
-
-            }
-            else if (clickCount == 3)
-            {
-                text.text = Sentence[4, 1];
-                CharacterName.text = Sentence[4, 0];
-                clickCount++;
-            }
-            else if (clickCount == 4)
-            {
-                text.text = Sentence[5, 1];
-                CharacterName.text = Sentence[5, 0];
-                Text_Ui.SetActive(false);
-                clickCount = 0;
-            }
-        }
     }
+
+
 }

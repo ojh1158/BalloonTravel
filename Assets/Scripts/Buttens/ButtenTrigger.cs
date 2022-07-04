@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class ButtenTrigger : MonoBehaviour
 {
-
-     
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             StartCoroutine(buttenManager());
         }
-
     }
 
     public void buttenexit()
     {
         StopCoroutine(buttenManager());
     }
-
 
     IEnumerator buttenManager()
     {
@@ -31,11 +26,8 @@ public class ButtenTrigger : MonoBehaviour
         {
             yield return null;
             transform.position += new Vector3(0, b - i, 0);
-            
-            
+
+
         }
-        
-
     }
-
 }

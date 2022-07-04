@@ -8,7 +8,6 @@ public class ButtenTrigger : MonoBehaviour
     public GameObject dialoguemanager;
 
     string player = "Player";
-    bool Buttens = true;
 
     public void OnTriggerEnter(Collider other)
     {

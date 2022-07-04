@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject event_Chapters; // 판정 제거용
     public GameObject Butten; // 비활성화 오브젝트
 
+
     int wrong_butten = 0; //잘못된 버튼 카운터
     int Dialog_Content = 0; 
     int Dialog_Name = 0;
@@ -21,6 +22,7 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject Npc1;
     public GameObject Npc1_1;
+    public GameObject moveNPC;
 
     public void Event_1_1() 
     {
@@ -204,6 +206,7 @@ public class DialogueManager : MonoBehaviour
                     Time.timeScale = 1f;
                     Text_Ui.SetActive(false);
                     Butten.GetComponent<ButtenTrigger>().enabled = false;
+                    moveNPC.GetComponent<NPC_Move>().npc_move();
                     yield break;
                 }
 

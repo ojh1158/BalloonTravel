@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public GameObject Text_Ui; //¥Î»≠√¢
-    public Text text; //√§∆√
-    public Text CharacterName; //ƒ≥∏Ø≈Õ ¿Ã∏ß
-    public GameObject event_Chapters; // ∆«¡§ ¡¶∞≈øÎ
+    public GameObject Text_Ui; //ÎåÄÌôîÏ∞Ω
+    public Text text; //Ï±ÑÌåÖ
+    public Text CharacterName; //Ï∫êÎ¶≠ÌÑ∞ Ïù¥Î¶Ñ
+    public GameObject event_Chapters; // ÌåêÏ†ï Ï†úÍ±∞Ïö©
+    public GameObject Butten; // ÎπÑÌôúÏÑ±Ìôî Ïò§Î∏åÏ†ùÌä∏
 
-    int Dialog_Content = 0;
+    int wrong_butten = 0; //ÏûòÎ™ªÎêú Î≤ÑÌäº Ïπ¥Ïö¥ÌÑ∞
+    int Dialog_Content = 0; 
     int Dialog_Name = 0;
 
     public TextAsset txt;
@@ -19,20 +21,22 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject Npc1;
     public GameObject Npc1_1;
+    public GameObject moveNPC;
 
     public void Event_1_1()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
 
-        Dialog_Content = 28;
-        Dialog_Name = 28;
+        Dialog_Content = 29;
+        Dialog_Name = 29;
 
         Text_Ui.SetActive(true);
         text.text = data_Dialog[Dialog_Content]["Content"].ToString();
         CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+        
         Dialog_Content++;
         Dialog_Name++;
-        // Time.timeScale = 0f;
+        
         GameManager.isTalking = true;
 
         StartCoroutine(EventText());
@@ -41,7 +45,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator EventText()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-        //Debug.Log("ƒ⁄∑Á∆æ Ω√¿€ ∫Œ∫–");
+        //Debug.Log("ÏΩîÎ£®Ìã¥ ÏãúÏûë Î∂ÄÎ∂Ñ");
 
         while (true)
         {
@@ -54,7 +58,7 @@ public class DialogueManager : MonoBehaviour
                 text.text = data_Dialog[Dialog_Content]["Content"].ToString();
                 CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
 
-                if (Dialog_Content == 37)
+                if (Dialog_Content == 38)
                 {
                     Dialog_Content = 0;
                     Dialog_Name = 0;
@@ -67,11 +71,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+    
     public void Event_1_Sing()
     {
         Text_Ui.SetActive(true);
-        text.text = "°È ¿Œ∞Ë \n ∏∂¿ª °Ë";
-        CharacterName.text = "«•¡ˆ∆«";
+        text.text = "‚Üì ÏßÄÏÉÅÏÑ∏Í≥Ñ \n ÎßàÏùÑ ‚Üë";
+        CharacterName.text = "ÌëúÏßÄÌåê";
     }
 
     public void Event_1_Sing_Out()
@@ -81,9 +86,10 @@ public class DialogueManager : MonoBehaviour
 
     public void NPC1_1()
     {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         Text_Ui.SetActive(true);
-        text.text = "πÆ¡¶∏¶ ±Ó∏‘æ˙¥œ? \n'∆ƒ¿Œ æ÷«√¿« ªˆ±Ú¿∫?'";
-        CharacterName.text = "¡÷πŒ1";
+        text.text = data_Dialog[59]["Content"].ToString();
+        CharacterName.text = data_Dialog[59]["Name"].ToString();
     }
 
     public void NPC1()
@@ -117,8 +123,8 @@ public class DialogueManager : MonoBehaviour
                 text.text = data_Dialog[Dialog_Content]["Content"].ToString();
                 CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
 
-                if (Dialog_Content == 55)
-                {
+                if (Dialog_Content == 58)
+                { 
                     Dialog_Content = 0;
                     Dialog_Name = 0;
                     GameManager.isTalking = false;
@@ -131,7 +137,87 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void Wrong_Butten()
+    {
+        wrong_butten++;
+        if (wrong_butten == 1)
+        {
+            List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+            Time.timeScale = 0f;
+            Dialog_Content = 61;
+            Dialog_Name = 61;           
+            text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+            CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+            Text_Ui.SetActive(true);
+            StartCoroutine(worng_Butten());
+        }
+    }
 
+    IEnumerator worng_Butten()
+    {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+        
+        while (true)
+        {
+            yield return null;
+            
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Dialog_Content++;
+                Dialog_Name++;
+
+                text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+                CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+                
+                if (Dialog_Name == 63)
+                {
+                    Time.timeScale = 1f;
+                    Text_Ui.SetActive(false);
+                    wrong_butten = 0;
+                    yield break;
+                }
+            }
+        }
+    }
+
+    public void Right_Butten()
+    {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+        Time.timeScale = 0f;
+        Dialog_Content = 64;
+        Dialog_Name = 64;
+        text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+        CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+        Text_Ui.SetActive(true);
+        StartCoroutine(right_Butten());
+    }
+
+    IEnumerator right_Butten()
+    {
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+        while (true)
+        {
+            yield return null;
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Dialog_Content++;
+                Dialog_Name++;
+
+                text.text = data_Dialog[Dialog_Content]["Content"].ToString();
+                CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+                if (Dialog_Name == 76)
+                {
+                    Time.timeScale = 1f;
+                    Text_Ui.SetActive(false);
+                    Butten.GetComponent<ButtenTrigger>().enabled = false;
+                    moveNPC.GetComponent<NPC_Move>().npc_move();
+                    yield break;
+                }
+
+            }
+        }
+    }
+    
     void Update()
     {
 

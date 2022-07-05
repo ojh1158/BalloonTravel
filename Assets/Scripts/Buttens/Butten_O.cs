@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtenTrigger : MonoBehaviour
+public class Butten_O : MonoBehaviour
 {
 
     public GameObject dialoguemanager;
 
     string player = "Player";
+
+    bool Buttens = true;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -18,11 +20,11 @@ public class ButtenTrigger : MonoBehaviour
     }
     IEnumerator buttenManager()
     {
-        bool Buttens = true;
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         float i = 0.001f;
         float temp = 0f;
         player = null; //다시 실행 방어
+
 
         Vector3 down = new Vector3(0, -0.001f, 0);
 
@@ -34,7 +36,7 @@ public class ButtenTrigger : MonoBehaviour
 
             if (temp > 0.2f)
             {
-                dialoguemanager.GetComponent<DialogueManager>().Wrong_Butten();
+                dialoguemanager.GetComponent<DialogueManager>().Right_Butten();
                 Buttens = false;
             }
         }

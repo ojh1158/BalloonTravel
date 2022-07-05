@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
     public void Event_1_Sing()
     {
         Text_Ui.SetActive(true);
-        text.text = "↓ 인계 \n 마을 ↑";
+        text.text = "↓ 지상세계 \n 마을 ↑";
         CharacterName.text = "표지판";
     }
 
@@ -130,6 +130,7 @@ public class DialogueManager : MonoBehaviour
                     Text_Ui.SetActive(false);
                     Npc1.SetActive(false);
                     Npc1_1.SetActive(true);
+                    yield break;
                 }
             }
         }

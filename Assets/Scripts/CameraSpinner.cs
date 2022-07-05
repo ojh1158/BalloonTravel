@@ -6,7 +6,6 @@ public class CameraSpinner : MonoBehaviour
 {
     public GameObject Player;
     public Transform target;
-    // public Vector3 offset;
 
     public int RotateAngle = 45;
 

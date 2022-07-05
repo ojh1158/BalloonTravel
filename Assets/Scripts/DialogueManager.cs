@@ -10,9 +10,10 @@ public class DialogueManager : MonoBehaviour
     public Text CharacterName; //캐릭터 이름
     public GameObject event_Chapters; // 판정 제거용
     public GameObject Butten; // 비활성화 오브젝트
+    public GameObject Star; //스타 ui
 
     int wrong_butten = 0; //잘못된 버튼 카운터
-    int Dialog_Content = 0; 
+    int Dialog_Content = 0;
     int Dialog_Name = 0;
 
     public TextAsset txt;
@@ -33,15 +34,24 @@ public class DialogueManager : MonoBehaviour
         Text_Ui.SetActive(true);
         text.text = data_Dialog[Dialog_Content]["Content"].ToString();
         CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
-        
+
         Dialog_Content++;
         Dialog_Name++;
-        
+
         GameManager.isTalking = true;
 
         StartCoroutine(EventText());
+        //StartCoroutine(Typing(Text typingText, string message, float speed));
     }
 
+    IEnumerator Typing(Text typingText, string message, float speed)
+    {
+        for (int i = 0; i < message.Length; i++)
+        {
+            typingText.text = message.Substring(0, i + 1);
+            yield return new WaitForSeconds(speed);
+        }
+    }
     IEnumerator EventText()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
@@ -73,7 +83,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    
+
     public void Event_1_Sing()
     {
         Text_Ui.SetActive(true);
@@ -131,7 +141,7 @@ public class DialogueManager : MonoBehaviour
                 CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
 
                 if (Dialog_Content == 58)
-                { 
+                {
                     Dialog_Content = 0;
                     Dialog_Name = 0;
 
@@ -152,9 +162,9 @@ public class DialogueManager : MonoBehaviour
         if (wrong_butten == 1)
         {
             List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-            
+
             GameManager.isTalking = true;
-            
+
             Dialog_Content = 61;
             Dialog_Name = 61;
 
@@ -170,11 +180,11 @@ public class DialogueManager : MonoBehaviour
     IEnumerator worng_Butten()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-        
+
         while (true)
         {
             yield return null;
-            
+
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 Dialog_Content++;
@@ -182,7 +192,7 @@ public class DialogueManager : MonoBehaviour
 
                 text.text = data_Dialog[Dialog_Content]["Content"].ToString();
                 CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
-                
+
                 if (Dialog_Name == 63)
                 {
                     GameManager.isTalking = false;
@@ -202,6 +212,8 @@ public class DialogueManager : MonoBehaviour
 
         GameManager.isTalking = true;
 
+        Star.SetActive(true);
+
         Dialog_Content = 64;
         Dialog_Name = 64;
 
@@ -216,7 +228,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator right_Butten()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-        
+
         while (true)
         {
             yield return null;
@@ -244,7 +256,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    
+
     void Update()
     {
 

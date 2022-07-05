@@ -11,6 +11,7 @@ public class NPC_Move : MonoBehaviour
     public void npc_move()
     {
         StartCoroutine(npc_Move());
+
     }
 
     IEnumerator npc_Move() //°íÃÄ¾ßµÊ

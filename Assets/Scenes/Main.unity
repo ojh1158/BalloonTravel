@@ -241,6 +241,7 @@ MonoBehaviour:
   text: {fileID: 1888020505}
   CharacterName: {fileID: 1410704349}
   Text_Ui: {fileID: 2109531896}
+  test_box: {fileID: 9724782}
   m_Message: 
 --- !u!1 &13579803
 GameObject:

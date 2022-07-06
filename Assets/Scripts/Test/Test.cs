@@ -9,6 +9,7 @@ public class Test : MonoBehaviour
     public Text CharacterName;
 
     public GameObject Text_Ui;
+    public GameObject test_box;
 
     public string m_Message;
 
@@ -23,7 +24,7 @@ public class Test : MonoBehaviour
         {
             Dialog_Content = 29;
             Dialog_Name = 29;
-
+            GameManager.isTalking = false;
             StartCoroutine(test(Dialog_Content, Dialog_Name));
             //Text_Ui.SetActive(true);
         }
@@ -34,7 +35,7 @@ public class Test : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         Debug.Log("코루틴 시작 부분");
         Text_Ui.SetActive(true);
-              
+
         CharacterName.text = data_Dialog[Content]["Name"].ToString();
         StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString(), 0.01f));
 
@@ -50,16 +51,20 @@ public class Test : MonoBehaviour
                 StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString(), 0.01f));
 
                 yield return new WaitForSeconds(0.2f);
-
-                if (Content == 38)
+                if (Content == 37)
                 {
-                    Content = 0;
-                    Name = 0;
-
-                    Text_Ui.SetActive(false);
-
-                    GameManager.isTalking = false;
-                    yield break;
+                    yield return new WaitForSeconds(0.2f);
+                    while (true)
+                    {
+                        yield return null;
+                        if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
+                        {
+                            Text_Ui.SetActive(false);
+                            test_box.SetActive(false);
+                            GameManager.isTalking = false;
+                            yield break;
+                        }
+                    }
                 }
             }
 
@@ -78,5 +83,4 @@ public class Test : MonoBehaviour
             yield return new WaitForSeconds(speed);
         }
     }
-
 }

@@ -18,6 +18,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator Stop_Dialogue()
+    {
+        yield return null;
+        Text_Ui.SetActive(false);
+        StopAllCoroutines();
+        yield break;
+    }
+
     public IEnumerator Dialogue(int Content, int Name, int FinerContent) // 다이얼로그 대화 스크립트
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");

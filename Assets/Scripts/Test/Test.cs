@@ -21,39 +21,40 @@ public class Test : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            StartCoroutine(test());
-            Text_Ui.SetActive(true);
+            Dialog_Content = 29;
+            Dialog_Name = 29;
+
+            StartCoroutine(test(Dialog_Content, Dialog_Name));
+            //Text_Ui.SetActive(true);
         }
     }
 
-     IEnumerator test()
+    IEnumerator test(int Content, int Name)
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         Debug.Log("코루틴 시작 부분");
-       
-        text.text = data_Dialog[Dialog_Content]["Content"].ToString();
-        CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
-
-        Dialog_Content = 29;
-        Dialog_Name = 29;
-        StartCoroutine(Typing(text, m_Message, 0.2f));
+        Text_Ui.SetActive(true);
+              
+        CharacterName.text = data_Dialog[Content]["Name"].ToString();
+        StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString(), 0.01f));
 
         while (true)
         {
             yield return null;
-
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
             {
-                text.text = data_Dialog[Dialog_Content]["Content"].ToString();
-                CharacterName.text = data_Dialog[Dialog_Name]["Name"].ToString();
+                Content++;
+                Name++;
 
-                Dialog_Content++;
-                Dialog_Name++;
-                StartCoroutine(Typing(text,m_Message, 0.2f));
-                if (Dialog_Content == 38)
+                CharacterName.text = data_Dialog[Content]["Name"].ToString();
+                StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString(), 0.01f));
+
+                yield return new WaitForSeconds(0.2f);
+
+                if (Content == 38)
                 {
-                    Dialog_Content = 0;
-                    Dialog_Name = 0;
+                    Content = 0;
+                    Name = 0;
 
                     Text_Ui.SetActive(false);
 
@@ -61,11 +62,13 @@ public class Test : MonoBehaviour
                     yield break;
                 }
             }
+
         }
+
     }
 
 
-     
+
     IEnumerator Typing(Text typingText, string message, float speed)
     {
         Debug.Log("타이핑 코루틴");

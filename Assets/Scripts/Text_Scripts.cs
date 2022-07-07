@@ -11,15 +11,17 @@ public class Text_Scripts : MonoBehaviour
     public int Dialog_Name; // 내부 인물 이름
     public int Dialog_FinerContent; // 마지막 페이지
 
-    GameManager gamemanager;
+    TextManager gamemanager;
 
     public  void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            gamemanager = gm.GetComponent<GameManager>(); //참조를 위한 재선헌
-            StartCoroutine(gamemanager.Dialogue(Dialog_Content, Dialog_Name, Dialog_FinerContent)); //코루틴 시작 함수
+            GameManager.isTalking = true;
+            gamemanager = gm.GetComponent<TextManager>(); //참조를 위한 재선헌
+            StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent)); //코루틴 시작 함수
         }
+
     }
 
     public void OnTriggerExit(Collider other)

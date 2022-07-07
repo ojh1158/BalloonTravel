@@ -41,7 +41,7 @@ public class TextManager : MonoBehaviour
         {
             yield return null;
             typingText.text = message.Substring(0, i + 1);
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) && Input.GetMouseButtonDown(0))
             {
                 yield break;
             }

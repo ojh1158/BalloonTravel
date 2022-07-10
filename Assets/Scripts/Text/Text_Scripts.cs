@@ -19,7 +19,7 @@ public class Text_Scripts : MonoBehaviour
         {
             GameManager.isTalking = true;
             gamemanager = textmanager.GetComponent<TextManager>(); //참조를 위한 재선헌
-            StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent, false)); //코루틴 시작 함수
+            StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent)); //코루틴 시작 함수
         }
 
     }

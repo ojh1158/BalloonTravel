@@ -106,7 +106,7 @@ public class TextManager : MonoBehaviour
             yield return null;
             string charater = data_Dialog[Content]["UI"].ToString();
 
-            if (charater == "Main_character_nomal")
+            if (charater == "Elphis_nomal")
             {
                 Main_character_nomal.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
@@ -115,7 +115,7 @@ public class TextManager : MonoBehaviour
                 }
                 yield break;
             }
-            if (charater == "Main_character_happy")
+            if (charater == "Elphis_happy")
             {
                 Main_character_happy.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
@@ -124,7 +124,7 @@ public class TextManager : MonoBehaviour
                 }
                 yield break;
             }
-            if (charater == "Main_character_bed")
+            if (charater == "Elphis_bed")
             {
                 Main_character_bed.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
@@ -133,7 +133,7 @@ public class TextManager : MonoBehaviour
                 }
                 yield break;
             }
-            if (charater == "Main_character_surprised")
+            if (charater == "Elphis_surprised ")
             {
                 Main_character_surprised.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
@@ -142,8 +142,13 @@ public class TextManager : MonoBehaviour
                 }
                 yield break;
             }
-
         }
-
+    }
+    public void UI_null()
+    {
+        Main_character_nomal.SetActive(false);
+        Main_character_happy.SetActive(false);
+        Main_character_bed.SetActive(false);
+        Main_character_surprised.SetActive(false);
     }
 }

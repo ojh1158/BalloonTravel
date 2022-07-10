@@ -14,6 +14,7 @@ public class Text_Button : MonoBehaviour
     public bool Button_Actvie;
     public bool O; //정답 버튼
     bool button_O = true;
+    
 
     
     TextManager gamemanager; // 재선헌 
@@ -28,7 +29,6 @@ public class Text_Button : MonoBehaviour
             {
                 GameManager.isTalking = false;
             }
-
         }
     }
     IEnumerator buttenManager()
@@ -78,6 +78,7 @@ public class Text_Button : MonoBehaviour
                     gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
                     StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
                     button_O = false;
+                    Button_Actvie = false;
                     yield break;
                 }
             }

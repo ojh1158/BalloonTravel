@@ -26,6 +26,7 @@ public class Text_Inout : MonoBehaviour
         {
             gamemanager = textmanager.GetComponent<TextManager>(); //참조를 위한 재선헌
             StartCoroutine(gamemanager.Stop_Dialogue()); //코루틴
+            gamemanager.GetComponent<TextManager>().UI_null();
         }
     }
 

@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 311032694}
   - component: {fileID: 311032696}
   - component: {fileID: 311032698}
-  - component: {fileID: 311032697}
+  - component: {fileID: 311032699}
   m_Layer: 0
   m_Name: Talk_2
   m_TagString: Untagged
@@ -1256,22 +1256,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &311032697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311032690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c94057a54ef6b469c0d9a821d200f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textmanager: {fileID: 297411688}
-  Dialog_Content: 79
-  Dialog_Name: 79
-  Dialog_FinerContent: 79
 --- !u!136 &311032698
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1286,6 +1270,21 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &311032699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311032690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c5a02b5aa56ab47955fc21e5f51cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textmanager: {fileID: 297411688}
+  Dialog_Content: 79
+  Dialog_Name: 79
 --- !u!4 &315459971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4075937848129010, guid: 7e473d16764048e40986f54d84b14754, type: 3}
@@ -3852,8 +3851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca4dae31eea81f408d0a4c5fa617f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Object: {fileID: 953792690}
-  button_active: {fileID: 1088653509}
+  Trigger_Object: {fileID: 953792690}
+  active_button: {fileID: 1088653509}
 --- !u!65 &1088653518
 BoxCollider:
   m_ObjectHideFlags: 0

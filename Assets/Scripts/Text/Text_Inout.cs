@@ -15,7 +15,9 @@ public class Text_Inout : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            
             gamemanager = textmanager.GetComponent<TextManager>(); //참조를 위한 재선헌
+            gamemanager.GetComponent<TextManager>().UI_null();
             StartCoroutine(gamemanager.Dialogue_Inout(Dialog_Content, Dialog_Name)); //코루틴 시작 함수
         }
     }

@@ -22,7 +22,16 @@ public class Text_npc_1 : MonoBehaviour
             StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent)); //코루틴 시작 함수
         }
     }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            gamemanager = textmanager.GetComponent<TextManager>(); //참조를 위한 재선헌
+            StartCoroutine(gamemanager.Stop_Dialogue()); //코루틴
+            gamemanager.GetComponent<TextManager>().UI_null();
+        }
+    }
 
-    
+
 
 }

@@ -14,16 +14,9 @@ public class TextManager : MonoBehaviour
     public GameObject Text_Ui;            // 대화창 UI
     public GameObject text_Change;        // 개채 참조
 
-    public GameObject[] Elphis;       //배열 선언
+    public GameObject character_UI;
 
-    public GameObject[] pilia;
-
-    bool Main_Character_Fade;
-
-
-
-
-    public GameObject Color_Quiz;
+    Character_UI gamemanager;
 
     void Update()
     {
@@ -39,16 +32,21 @@ public class TextManager : MonoBehaviour
         yield break;
     }
 
-    public IEnumerator Dialogue_Inout(int Content, int Name) // 다이얼로그 인_아웃 대화 스크립트
+    public IEnumerator Dialogue_Inout(int Content, int Name, bool isnottalk) // 다이얼로그 인_아웃 대화 스크립트
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         Text_Ui.SetActive(true);
-        //Main_character_nomal_Fade.SetActive(false);
-        //UI_null();
 
         CharacterName.text = data_Dialog[Content]["Name"].ToString();
         StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString()));
-        //StartCoroutine(Text_UI_image(Content));
+
+        gamemanager = character_UI.GetComponent<Character_UI>();
+        if (!isnottalk)
+        {
+            StartCoroutine(gamemanager.Text_UI_image(Content));
+        }
+        
+
         yield break;
     }
     public IEnumerator Typing(Text typingText, string message)
@@ -72,13 +70,11 @@ public class TextManager : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
         Text_Ui.SetActive(true);
 
-        //UI_null();
-
         CharacterName.text = data_Dialog[Name]["Name"].ToString();
         StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
-        //StartCoroutine(Text_UI_image(Content));
-        string charater = data_Dialog[Content]["UI"].ToString();
-        string Image = data_Dialog[Content]["Image"].ToString();
+
+        gamemanager = character_UI.GetComponent<Character_UI>();
+        StartCoroutine(gamemanager.Text_UI_image(Content));
 
         while (true)
         {
@@ -89,84 +85,22 @@ public class TextManager : MonoBehaviour
                 Content++;
                 Name++;
 
-                //UI_null();
-
                 CharacterName.text = data_Dialog[Name]["Name"].ToString();
                 StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
-                //StartCoroutine(Text_UI_image(Content));
 
-
-
-
-                //if (Image == "Color_Quiz")
-                //{
-                //    Color_Quiz.SetActive(true);
-                //}
-                //if (charater == "Elphis_nomal")
-                //{
-                //    Main_character_nomal.SetActive(true);
-                //    Debug.Log(";dflsfd");
-                //}
-                //if (charater == "Elphis_happy")
-                //{
-                //    Main_character_nomal_Fade.SetActive(false);
-                //    Main_character_happy.SetActive(true);
-                //}
-                //if (charater == "Elphis_bed")
-                //{
-
-                //    Main_character_nomal_Fade.SetActive(false);
-                //    Main_character_bed.SetActive(true);
-                //}
-                //if (charater == "Elphis_surprised")
-                //{
-                //    Main_character_nomal_Fade.SetActive(false);
-                //    Main_character_surprised.SetActive(true);
-                //}
-                //if (charater == "pilia_happy")
-                //{
-                //    pilia_happy.SetActive(true);
-                //}
-                //if (charater == "pilia_Sad")
-                //{
-                //    pilia_Sad.SetActive(true);
-                //}
-                //if (charater == "pilia_Curiosity")
-                //{
-                //    pilia_Curiosity.SetActive(true);
-                //}
-                //if (charater == "pilia_Panic")
-                //{
-                //    pilia_Panic.SetActive(true);
-                //}
-                //if (charater == "pilia_Angry")
-                //{
-                //    pilia_Angry.SetActive(true);
-                //}
-                //if (charater == "pilia_awe")
-                //{
-                //    pilia_awe.SetActive(true);
-                //}
-                //if (charater == "pilia_nomal")
-                //{
-                //    pilia_nomal.SetActive(true);
-                //}
-                //if (Main_Character_Fade)
-                //{
-                //    Main_character_nomal_Fade.SetActive(true);
-                //}
+                gamemanager = character_UI.GetComponent<Character_UI>();
+                StartCoroutine(gamemanager.Text_UI_image(Content));
 
                 if (Content == FinerContent + 1 || Input.GetKeyDown(KeyCode.Z) && Input.GetMouseButtonDown(0))
                 {
-                    //UI_null();
+                   
                     GameManager.isTalking = false;
-                    //StopCoroutine(Text_UI_image(Content));
-                    //Main_character_nomal_Fade.SetActive(false);
+                   
                     Text_Ui.SetActive(false);
                     Debug.Log("대화 마지막 디보그");
 
 
-                    //text_change.GetComponent<Text_Change>().RoopTalking(roopTalking);
+                    
                     yield break;
                 }
             }
@@ -181,88 +115,7 @@ public class TextManager : MonoBehaviour
             yield return null;
             string charater = data_Dialog[Content]["UI"].ToString();
             string Image = data_Dialog[Content]["Image"].ToString();
-
-            //if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
-            //{
-            //    yield return null;
-            //    UI_null();
-
-            //    if (Image == "Color_Quiz")
-            //    {
-            //        Color_Quiz.SetActive(true);
-            //    }
-            //    if (charater == "Elphis_nomal")
-            //    {
-            //        Main_character_nomal.SetActive(true);
-            //        Debug.Log(";dflsfd");
-            //    }
-            //    if (charater == "Elphis_happy")
-            //    {
-            //        Main_character_nomal_Fade.SetActive(false);
-            //        Main_character_happy.SetActive(true);
-            //    }
-            //    if (charater == "Elphis_bed")
-            //    {
-
-            //        Main_character_nomal_Fade.SetActive(false);
-            //        Main_character_bed.SetActive(true);
-            //    }
-            //    if (charater == "Elphis_surprised")
-            //    {
-            //        Main_character_nomal_Fade.SetActive(false);
-            //        Main_character_surprised.SetActive(true);
-
-            //    }
-            //    if (charater == "pilia_happy")
-            //    {
-            //        pilia_happy.SetActive(true);
-            //    }
-            //    if (charater == "pilia_Sad")
-            //    {
-            //        pilia_Sad.SetActive(true);
-            //    }
-            //    if (charater == "pilia_Curiosity")
-            //    {
-            //        pilia_Curiosity.SetActive(true);
-            //    }
-            //    if (charater == "pilia_Panic")
-            //    {
-            //        pilia_Panic.SetActive(true);
-            //    }
-            //    if (charater == "pilia_Angry")
-            //    {
-            //        pilia_Angry.SetActive(true);
-            //    }
-            //    if (charater == "pilia_awe")
-            //    {
-
-            //        pilia_awe.SetActive(true);
-            //    }
-            //    if (charater == "pilia_nomal")
-            //    {
-            //        pilia_nomal.SetActive(true);
-            //    }
-            //    else if(Main_Character_Fade)
-            //    {
-            //        Main_character_nomal_Fade.SetActive(true);
-            //    }
-            //}
         }
-    }
-    public void UI_null()
-    {
-        //Main_character_nomal.SetActive(false);
-        //Main_character_happy.SetActive(false);
-        //Main_character_bed.SetActive(false);
-        //Main_character_surprised.SetActive(false);
-        //pilia_happy.SetActive(false);
-        //pilia_Sad.SetActive(false);
-        //pilia_Curiosity.SetActive(false);
-        //pilia_Panic.SetActive(false);
-        //pilia_Angry.SetActive(false);
-        //pilia_awe.SetActive(false);
-        //pilia_nomal.SetActive(false);
-        //Color_Quiz.SetActive(false);
     }
 }
 

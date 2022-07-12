@@ -13,7 +13,7 @@ public class Text_Button : MonoBehaviour
 
     public bool Button_Actvie;
     public bool O; //정답 버튼
-    bool button_O = true;
+    public bool button_O = true;
     
 
     

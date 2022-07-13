@@ -8,6 +8,8 @@ public class TextManager : MonoBehaviour
     public static bool isJumped = false;
     public static bool isTalking = false;
 
+    [HideInInspector] public bool Delay_Text;
+
     public Text text;           // 대화창 내용
     public Text CharacterName;  // 인물 이름
 
@@ -22,32 +24,33 @@ public class TextManager : MonoBehaviour
     {
 
     }
-
     public IEnumerator Stop_Dialogue() //다이얼로그 멈춤
     {
         yield return null;
         Text_Ui.SetActive(false);
-        //UI_null();
+        character_UI.GetComponent<Character_UI>().All_UI_Stop(); 
         StopAllCoroutines();
         yield break;
     }
 
     public IEnumerator Dialogue_Inout(int Content, int Name, bool isnottalk) // 다이얼로그 인_아웃 대화 스크립트
     {
-        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-        Text_Ui.SetActive(true);
-
-        CharacterName.text = data_Dialog[Content]["Name"].ToString();
-        StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString()));
-
-        gamemanager = character_UI.GetComponent<Character_UI>();
-        if (!isnottalk)
+        if (!Delay_Text)
         {
-            StartCoroutine(gamemanager.Text_UI_image(Content));
-        }
-        
+            List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+            Text_Ui.SetActive(true);
 
-        yield break;
+            CharacterName.text = data_Dialog[Content]["Name"].ToString();
+            StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString()));
+
+            gamemanager = character_UI.GetComponent<Character_UI>();
+            if (!isnottalk)
+            {
+                StartCoroutine(gamemanager.Text_UI_image(Content));
+            }
+            yield break;
+        }
+
     }
     public IEnumerator Typing(Text typingText, string message)
     {
@@ -67,40 +70,43 @@ public class TextManager : MonoBehaviour
 
     public IEnumerator Dialogue(int Content, int Name, int FinerContent) // 다이얼로그 대화 스크립트
     {
-        List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
-        Text_Ui.SetActive(true);
-
-        CharacterName.text = data_Dialog[Name]["Name"].ToString();
-        StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
-
-        gamemanager = character_UI.GetComponent<Character_UI>();
-        StartCoroutine(gamemanager.Text_UI_image(Content));
-
-        while (true)
+        if (!Delay_Text)
         {
-            yield return null;
+            List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
+            Text_Ui.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
+            CharacterName.text = data_Dialog[Name]["Name"].ToString();
+            StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
+
+            gamemanager = character_UI.GetComponent<Character_UI>();
+            StartCoroutine(gamemanager.Text_UI_image(Content));
+
+            while (true)
             {
-                Content++;
-                Name++;
+                yield return null;
 
-                CharacterName.text = data_Dialog[Name]["Name"].ToString();
-                StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
-
-                gamemanager = character_UI.GetComponent<Character_UI>();
-                StartCoroutine(gamemanager.Text_UI_image(Content));
-
-                if (Content == FinerContent + 1 || Input.GetKeyDown(KeyCode.Z) && Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
                 {
-                   
-                    GameManager.isTalking = false;
-                   
-                    Text_Ui.SetActive(false);   
-                    yield break;
+                    Content++;
+                    Name++;
+
+                    CharacterName.text = data_Dialog[Name]["Name"].ToString();
+                    StartCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
+
+                    gamemanager = character_UI.GetComponent<Character_UI>();
+                    StartCoroutine(gamemanager.Text_UI_image(Content));
+
+                    if (Content == FinerContent + 1 || Input.GetKeyDown(KeyCode.Z) && Input.GetMouseButtonDown(0))
+                    {
+
+                        GameManager.isTalking = false;
+                        Text_Ui.SetActive(false);
+                        yield break;
+                    }
                 }
             }
         }
+
     }
 }
 

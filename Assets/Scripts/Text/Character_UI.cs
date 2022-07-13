@@ -14,6 +14,8 @@ public class Character_UI : MonoBehaviour
 
     public GameObject[] Gerffa;
 
+    public GameObject[] Quiz;
+
     public IEnumerator Text_UI_image(int Content) // 캐릭터 UI
     {
         
@@ -22,30 +24,9 @@ public class Character_UI : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
 
         string charater = data_Dialog[Content]["UI"].ToString();
+        string Image = data_Dialog[Content]["Image"].ToString();
 
-        Elphis[0].SetActive(false);
-        Elphis[1].SetActive(false);
-        Elphis[2].SetActive(false);
-        Elphis[3].SetActive(false);
-        Elphis[4].SetActive(false);
-
-        Plila[0].SetActive(false);
-        Plila[1].SetActive(false);
-        Plila[2].SetActive(false);
-        Plila[3].SetActive(false);
-        Plila[4].SetActive(false);
-        Plila[5].SetActive(false);
-        Plila[6].SetActive(false);
-
-        Demos[0].SetActive(false);
-        Demos[1].SetActive(false);
-        Demos[2].SetActive(false);
-
-        Gerffa[0].SetActive(false);
-        Gerffa[1].SetActive(false);
-        Gerffa[2].SetActive(false);
-        Gerffa[3].SetActive(false);
-
+        All_UI_Stop();
 
         if (charater == "Elphis_nomal")  // 주인공
         {
@@ -129,5 +110,39 @@ public class Character_UI : MonoBehaviour
         {
             Gerffa[3].SetActive(true);
         }
+
+        if (Image == "Color_Quiz")
+        {
+            Quiz[0].SetActive(true);
+        }
+    }
+
+
+    public void All_UI_Stop()
+    {
+        Elphis[0].SetActive(false);
+        Elphis[1].SetActive(false);
+        Elphis[2].SetActive(false);
+        Elphis[3].SetActive(false);
+        Elphis[4].SetActive(false);
+
+        Plila[0].SetActive(false);
+        Plila[1].SetActive(false);
+        Plila[2].SetActive(false);
+        Plila[3].SetActive(false);
+        Plila[4].SetActive(false);
+        Plila[5].SetActive(false);
+        Plila[6].SetActive(false);
+
+        Demos[0].SetActive(false);
+        Demos[1].SetActive(false);
+        Demos[2].SetActive(false);
+
+        Gerffa[0].SetActive(false);
+        Gerffa[1].SetActive(false);
+        Gerffa[2].SetActive(false);
+        Gerffa[3].SetActive(false);
+
+        Quiz[0].SetActive(false);
     }
 }

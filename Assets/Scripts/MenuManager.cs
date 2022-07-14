@@ -7,7 +7,6 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject menu;
 
-    public GameObject Cut_Scenes;
 
     void Update()
     {

@@ -514,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 7092402865170256878, guid: 68ed6feefd6cd4642b04ddb10981d336, type: 3}
       propertyPath: Elphis.Array.data[4]
       value: 
-      objectReference: {fileID: 1999390011}
+      objectReference: {fileID: 253437327}
     - target: {fileID: 7092402865170256878, guid: 68ed6feefd6cd4642b04ddb10981d336, type: 3}
       propertyPath: Gerffa.Array.data[0]
       value: 
@@ -561,6 +561,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7672831685551378995, guid: 275fe80cec9eeb94696f3bca3b8b05fe, type: 3}
   m_PrefabInstance: {fileID: 1774482059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &253437327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8902094960317487633, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+  m_PrefabInstance: {fileID: 1153658443}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &256397940
 GameObject:
@@ -2024,6 +2029,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2490962223159147919, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723376569469487233, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6682096315101921072, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2192,13 +2205,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6682096316565594292, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682096316750267172, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682096316750267174, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682096316750267174, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682096316750267174, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682096316750267174, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6682096316750267175, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8144867669868156346, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902094960317487633, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
@@ -4183,11 +4224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 272438810}
---- !u!1 &1999390011 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6682096316750267172, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
-  m_PrefabInstance: {fileID: 1153658443}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2027807419 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6682096315192974160, guid: 4c4f3c85ddd90fe48b0ce299a8d76379, type: 3}
@@ -4345,7 +4381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2103828147
 MonoBehaviour:
   m_ObjectHideFlags: 0

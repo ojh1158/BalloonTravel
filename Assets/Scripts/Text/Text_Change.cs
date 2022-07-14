@@ -9,6 +9,8 @@ public class Text_Change : MonoBehaviour
     public int Talking_End; // 대화 끝 정하기
 
     public bool Roop;       // 루프 체크
+
+    public bool Navar_stop_talking;
     [HideInInspector] public bool Roop_Talking;
 
     public int Roop_int;    // 루프 문단
@@ -34,9 +36,14 @@ public class Text_Change : MonoBehaviour
 
     public void Change_object()      // 바꿔치기 함수
     {
-        if (Talking_End_bool)
+        if (Talking_End_bool && !Navar_stop_talking)
         {
             Change_Object[Talking].SetActive(false);
+        }
+
+        if (Talking_End_bool && Navar_stop_talking)
+        {
+
         }
 
         if (Roop)   // 루프 활성화

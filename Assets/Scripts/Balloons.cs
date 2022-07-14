@@ -23,7 +23,7 @@ public class Balloons : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.isGround == true)
+        if (GameManager.isGround == false)
         {
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref speed, rand1 * Time.deltaTime);
             BallonRope.transform.rotation = Quaternion.Slerp(BallonRope.transform.rotation, Quaternion.Euler(-90, 0, 0), rand2 * Time.deltaTime);

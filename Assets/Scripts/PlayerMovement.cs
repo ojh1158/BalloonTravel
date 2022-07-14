@@ -136,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetBool("isHanging", true);
 
+            GameManager.onBalloon = true;
+
             clone = Instantiate(Balloons, BalloonAttachPosition.transform.position, Balloons.transform.rotation * Quaternion.Euler(Balloons.transform.rotation.x, Balloons.transform.rotation.y, Random.Range(-90f, 90f)));
             clone.transform.SetParent(BalloonAttachPosition.transform);
 

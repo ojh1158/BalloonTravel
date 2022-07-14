@@ -28,7 +28,9 @@ public class TextManager : MonoBehaviour
     {
         yield return null;
         Text_Ui.SetActive(false);
-        character_UI.GetComponent<Character_UI>().All_UI_Stop(); 
+        CharacterName.text = "";
+        text.text = "";
+        gamemanager.All_UI_Stop();
         StopAllCoroutines();
         yield break;
     }
@@ -37,6 +39,7 @@ public class TextManager : MonoBehaviour
     {
         if (!Delay_Text)
         {
+            gamemanager.All_UI_Stop();
             List<Dictionary<string, object>> data_Dialog = CSVReader.Read("Dialog");
             Text_Ui.SetActive(true);
 
@@ -44,8 +47,10 @@ public class TextManager : MonoBehaviour
             StartCoroutine(Typing(text, data_Dialog[Name]["Content"].ToString()));
 
             gamemanager = character_UI.GetComponent<Character_UI>();
+
             if (!isnottalk)
             {
+                gamemanager.All_UI_Stop();
                 StartCoroutine(gamemanager.Text_UI_image(Content));
             }
             yield break;
@@ -58,7 +63,7 @@ public class TextManager : MonoBehaviour
         {
             yield return null;
             typingText.text = message.Substring(0, i + 1);
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 yield break;
             }
@@ -85,7 +90,7 @@ public class TextManager : MonoBehaviour
             {
                 yield return null;
 
-                if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
                     Content++;
                     Name++;
@@ -96,9 +101,9 @@ public class TextManager : MonoBehaviour
                     gamemanager = character_UI.GetComponent<Character_UI>();
                     StartCoroutine(gamemanager.Text_UI_image(Content));
 
-                    if (Content == FinerContent + 1 || Input.GetKeyDown(KeyCode.Z) && Input.GetMouseButtonDown(0))
+                    if (Content == FinerContent + 1 || Input.GetKeyDown(KeyCode.Space) && Input.GetMouseButtonDown(0))
                     {
-
+                        gamemanager.All_UI_Stop();
                         GameManager.isTalking = false;
                         Text_Ui.SetActive(false);
                         yield break;

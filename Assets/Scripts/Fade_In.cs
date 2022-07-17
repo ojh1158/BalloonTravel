@@ -46,7 +46,7 @@ public class Fade_In : MonoBehaviour
                 {
                     if (start)
                     {
-                        SceneManager.LoadScene(1);
+                        SceneManager.LoadScene(2);
                         yield break;
                     }
                     if (!start)

@@ -75,8 +75,8 @@ public class Text_Button : MonoBehaviour
 
                 if (temp > 0.2f)
                 {
-                    gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
-                    StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
+                    //gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
+                    //StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
                     button_O = false;
                     Button_Actvie = false;
                     yield break;

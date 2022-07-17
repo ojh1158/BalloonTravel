@@ -42,12 +42,11 @@ public class NPC_Move : MonoBehaviour
     {
         Delay_Text.GetComponent<TextManager>().Delay_Text = true; 
         StartCoroutine(npc_Move());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(move_speed * 2);
         Delay_Text.GetComponent<TextManager>().Delay_Text = false;
         GameManager.isTalking = false;
         yield return new WaitForSeconds(Stoplooking_time - 1f);
         StopCoroutine(npc_Move());
-
         looking = false;
         megas.GetComponent<Look_Player>().lookingstop = false;
     }

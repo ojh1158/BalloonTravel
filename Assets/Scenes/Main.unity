@@ -4984,6 +4984,7 @@ GameObject:
   - component: {fileID: 1199654283}
   - component: {fileID: 1199654282}
   - component: {fileID: 1199654281}
+  - component: {fileID: 1199654285}
   m_Layer: 5
   m_Name: Ending_cutsin
   m_TagString: Untagged
@@ -5078,6 +5079,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1199654285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199654280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca16f5ccc2bc4840974e592bca436c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textmanager: {fileID: 1523671186}
+  Start_Content_Trigger: {fileID: 0}
+  Fade_in: 000000000000
+  Talk_int: 0
+  End_Cut: 0
+  Waiting_Time:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  Fade:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Content: 0
+  Name: 0
+  FinerContent: 0
+  start: 0
 --- !u!1 &1209404321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7318878696256781611, guid: dab82b42fb63960488dba0bc785435b2, type: 3}

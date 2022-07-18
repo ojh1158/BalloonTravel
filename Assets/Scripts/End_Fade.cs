@@ -5,122 +5,289 @@ using UnityEngine.UI;
 
 public class End_Fade : MonoBehaviour
 {
-    public GameObject[] end_trigger;
 
-    public GameObject[] object_set;
-
-    public GameObject[] open_eyes_object;
+    public GameObject open_eyes_object;
 
     float fadeCount;
 
-    public Image[] open_eyes_Fade;
-    public Image[] Fade_image;
+    public Image open_eyes_Fade;
 
-    bool open_eyes;
+    public Image Black_look;
+
+    //public Image White;
+
+    public Image[] Fade_image_1;
+    public Image[] Fade_image_2;
+    public Image[] Fade_image_3;
+    public Image[] Fade_image_4;
+    public Image[] Fade_image_5;
+
+    public int[] Fade_image_int;
+
+    public float Time_set_next;
+
 
     int page = 0;
 
-    public int Cut_flame_int;
 
+
+    void Start()
+    {
+        End_Trigger();
+    }
 
     public void End_Trigger()
     {
         GameManager.isTalking = true;
 
-        StartCoroutine(Time_line());
-    }
-
-    IEnumerator Time_line()
-    {
-        yield return null;
         StartCoroutine(Ending_start());
-        while (true)
-        {
-            yield return null;
-            if (open_eyes)
-            {
-                StartCoroutine(fade_in_Wt(0));
-                yield break;
-            }
-            if (page == 1)
-            {
-                //StartCoroutine();
-            }
-        }
-        
     }
 
     IEnumerator Ending_start()
     {
-        fadeCount = 1.0f;
-        open_eyes_object[0].SetActive(true);
+        fadeCount = 0f;
+        open_eyes_object.SetActive(true);
         while (true)
         {
-            fadeCount -= 0.01f;
+            fadeCount += 0.01f;
             yield return new WaitForSeconds(0.01f);
 
-            open_eyes_Fade[0].color = new Color(255, 255, 255, fadeCount);
+            open_eyes_Fade.color = new Color(255, 255, 255, fadeCount);
 
-            if (fadeCount < 0.6f)
+            if (fadeCount > 0.3f)
             {
                 while (true)
                 {
-                    fadeCount += 0.01f;
+                    fadeCount -= 0.01f;
                     yield return new WaitForSeconds(0.01f);
 
-                    open_eyes_Fade[0].color = new Color(255, 255, 255, fadeCount);
+                    open_eyes_Fade.color = new Color(255, 255, 255, fadeCount);
 
-                    if (fadeCount > 0.9f)
+                    if (fadeCount < 0.1f)
                     {
                         while (true)
                         {
-                            fadeCount -= 0.01f;
+                            fadeCount += 0.01f;
                             yield return new WaitForSeconds(0.01f);
 
-                            open_eyes_Fade[0].color = new Color(255, 255, 255, fadeCount);
-                            if (fadeCount < 0)
+                            open_eyes_Fade.color = new Color(255, 255, 255, fadeCount);
+                            if (fadeCount > 1.0f)
                             {
-                                yield break;
+                                yield return new WaitForSeconds(3f);
+                                while (true)
+                                {
+                                    fadeCount -= 0.01f;
+                                    yield return new WaitForSeconds(0.01f);
+
+                                    open_eyes_Fade.color = new Color(255, 255, 255, fadeCount);
+                                    if (fadeCount < 0f)
+                                    {
+                                        yield return new WaitForSeconds(3f);
+                                        StartCoroutine(bleak_Look());
+                                        yield break;
+                                    }
+                                }
+
                             }
                         }
                     }
                 }
             }
         }
-        
+
     }
 
-    IEnumerator fade_in_Wt(int number)
+    IEnumerator bleak_Look()
     {
-        fadeCount = 1.0f;
-        while (fadeCount > 0.0f)
+        fadeCount = 0;
+        while (true)
         {
-            fadeCount -= 0.01f;
-            yield return new WaitForSeconds(0.01f);     //0.01?????? ????
+            fadeCount += 0.005f;
+            yield return new WaitForSeconds(0.02f);
 
-            Fade_image[number].color = new Color(255, 255, 255, fadeCount);
-            if (fadeCount < 0.0f)
+            Black_look.color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 0.25)
             {
+                while (true)
+                {
+                    fadeCount -= 0.005f;
+                    yield return new WaitForSeconds(0.02f);
+
+                    Black_look.color = new Color(255, 255, 255, fadeCount);
+                    if (fadeCount < 0.10)
+                    {
+                        yield return new WaitForSeconds(3f);
+                        StartCoroutine(fade_image_1());
+                        yield break;
+                    }
+                }
+            }
+        }
+    }
+    IEnumerator fade_image_1()
+    {
+        int i = 0;
+        fadeCount = 0;
+        while (true)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_1[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
+            {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(3f);
+            }
+            if (Fade_image_int[page] == i -1)
+            {
+                StartCoroutine(fade_image_2());
                 yield break;
             }
         }
     }
 
-    IEnumerator fade_out_Bk(int number)
+    IEnumerator fade_image_2()
     {
-        fadeCount = 1f;
-        while (fadeCount > 0.0f)
+        int i = 0;
+        fadeCount = 0;
+        while (true)
         {
-            fadeCount -= 0.01f;
-            yield return new WaitForSeconds(0.01f);     //0.01?????? ????
-
-            Fade_image[number].color = new Color(0, 0, 0, fadeCount);
-            if (fadeCount < 0.0f)
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_2[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
             {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(3f);
+            }
+            if (Fade_image_int[page] == i - 1)
+            {
+                StartCoroutine(fade_image_3());
                 yield break;
             }
         }
-        
     }
+
+    IEnumerator fade_image_3()
+    {
+        int i = 0;
+        fadeCount = 0;
+        while (true)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_3[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
+            {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(3f);
+            }
+            if (Fade_image_int[page] == i - 1)
+            {
+                StartCoroutine(fade_image_4());
+                yield break;
+            }
+        }
+    }
+    IEnumerator fade_image_4()
+    {
+        int i = 0;
+        fadeCount = 0;
+        while (true)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_4[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
+            {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(3f);
+            }
+            if (Fade_image_int[page] == i - 1)
+            {
+                StartCoroutine(fade_image_5());
+                yield break;
+            }
+        }
+    }
+
+    IEnumerator fade_image_5()
+    {
+        int i = 0;
+        fadeCount = 0;
+        while (true)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_5[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
+            {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(3f);
+            }
+            if (Fade_image_int[page] == i - 1)
+            {
+                //StartCoroutine(fade_image_3());
+                yield break;
+            }
+        }
+    }
+    //IEnumerator fade_in_Wt(Image fade_image)
+    //{
+    //    fadeCount = 0f;
+    //    while (fadeCount < 1.0f)
+    //    {
+    //        fadeCount += 0.01f;
+    //        yield return new WaitForSeconds(0.01f);     //0.01?????? ????
+
+    //        fade_image.color = new Color(255, 255, 255, fadeCount);
+
+    //        if (fadeCount < 1.0f)
+    //        {
+    //            yield break;
+    //        }
+    //    }
+    //}
+
+    //IEnumerator White_open(bool i)
+    //{
+    //    if (i)
+    //    {
+    //        fadeCount = 1f;
+    //        while (fadeCount > 0.0f)
+    //        {
+    //            fadeCount -= 0.01f;
+    //            yield return new WaitForSeconds(0.01f);     //0.01?????? ????
+
+    //            White.color = new Color(255, 255, 255, fadeCount);
+    //            if (fadeCount < 0.0f)
+    //            {
+    //                yield break;
+    //            }
+    //        }
+
+    //    }
+    //    if (!i)
+    //    {
+    //        fadeCount = 0f;
+    //        while (fadeCount < 1f)
+    //        {
+    //            fadeCount += 0.01f;
+    //            yield return new WaitForSeconds(0.01f);
+
+    //            White.color = new Color(255, 255, 255, fadeCount);
+    //            if (fadeCount < 1f)
+    //            {
+    //                yield break;
+    //            }
+    //        }
+    //    }
+
+    //}
 
 }

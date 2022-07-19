@@ -43,7 +43,7 @@ public class End_Fade : MonoBehaviour
         StartCoroutine(Ending_start());
     }
 
-    IEnumerator Ending_start()  //필살기 5중 반복문!!
+    IEnumerator Ending_start()  //?????? 5?? ??????!!
     {
         fadeCount = 0f;
         open_eyes_object.SetActive(true);
@@ -94,7 +94,6 @@ public class End_Fade : MonoBehaviour
                 }
             }
         }
-
     }
 
     IEnumerator bleak_Look()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1884,13 +1884,12 @@ MonoBehaviour:
   textmanager: {fileID: 1786842098}
   Start_Content_Trigger: {fileID: 1129569806228551838}
   Audio: {fileID: 1398998018}
-  Fade_in: 0001000101010000
+  Fade_in: 00010001010100
   Talk_int: 5
-  End_Cut: 7
+  End_Cut: 6
   Waiting_Time:
   - 1.5
   - 5
-  - 1.5
   - 1.5
   - 1.5
   - 1.5
@@ -1904,7 +1903,6 @@ MonoBehaviour:
   - {fileID: 1853343508}
   - {fileID: 1727211490}
   - {fileID: 750646035}
-  - {fileID: 764563007}
   Content: 0
   Name: 0
   FinerContent: 34

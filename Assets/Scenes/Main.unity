@@ -2809,7 +2809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6646105398341225172, guid: e7e2e3f3abf7445d292957f5652bb8e9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6646105398614075541, guid: e7e2e3f3abf7445d292957f5652bb8e9, type: 3}
       propertyPath: Cutsin

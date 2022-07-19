@@ -72,27 +72,6 @@ public class TextManager : MonoBehaviour
             typingText.text = message.Substring(0, i + 1);
         }
 
-        //String_long = message.Length;
-
-        //int i = 0;
-
-        //while (true)
-        //{
-
-
-        //    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        //    {
-        //        yield break;
-        //    }
-        //    if (i == String_long - 1)
-        //    {
-        //        yield break;
-        //    }
-        //    i++;
-        //    yield return new WaitForSeconds(0.02f);
-        //    typingText.text = message.Substring(0, i + 1);
-        //}
-
     }
     public IEnumerator Dialogue(int Content, int Name, int FinerContent) // 다이얼로그 대화 스크립트
     {
@@ -108,8 +87,6 @@ public class TextManager : MonoBehaviour
         StartCoroutine(gamemanager.Text_UI_image(Content));
         Content++;
         Name++;
-
-        //skip_text = true;
 
         while (true)
         {
@@ -136,14 +113,6 @@ public class TextManager : MonoBehaviour
                     yield break;
                 }
             }
-            //if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && skip_text)
-            //{
-            //    Content++;
-            //    Name++;
-
-            //    StopCoroutine(Typing(text, data_Dialog[Content]["Content"].ToString()));
-            //    skip_text = false;
-            //}
         }
     }
 }

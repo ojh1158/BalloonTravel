@@ -14,17 +14,18 @@ public class Text_Button : MonoBehaviour
 
     [HideInInspector] public bool Button_Actvie;
     public bool O;                  //정답 버튼
-    
 
+    bool stop;
     
     TextManager gamemanager; // 재선헌 
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && Button_Actvie)
+        if (other.tag == "Player" && Button_Actvie && !stop)
         {
             StartCoroutine(buttenManager());
             GameManager.isTalking = true;
+            stop = true;
         }
     }
     IEnumerator buttenManager()
@@ -53,6 +54,7 @@ public class Text_Button : MonoBehaviour
                         temp -= i;
                         if (temp < 0f)
                         {
+                            stop = false;
                             gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
                             StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
                             yield break;

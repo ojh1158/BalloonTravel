@@ -850,10 +850,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f4e0935470a9c384aaa49b3d4db20ba4, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5796,6 +5796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1256074709}
   - component: {fileID: 1256074708}
+  - component: {fileID: 1256074710}
   m_Layer: 0
   m_Name: Sound_Main
   m_TagString: Untagged
@@ -5919,6 +5920,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256074710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256074707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd597a7c5904ec4cb1e2fedd18906ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Chainge_Audio:
+  - {fileID: 67548794}
+  - {fileID: 1378402796}
+  - {fileID: 118408053}
+  - {fileID: 1832264325}
+  - {fileID: 1716913604}
 --- !u!1 &1260891681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 590204865682585740, guid: dab82b42fb63960488dba0bc785435b2, type: 3}
@@ -6463,10 +6482,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6f16f87be1cbe5f4484b00765d81d869, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8158,10 +8177,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9620f0fdb5d1d9046ab0d22d31574ed1, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8681,10 +8700,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 59103662cd5ef4b4a90222bdc3bb800c, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

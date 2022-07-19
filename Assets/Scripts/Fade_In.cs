@@ -9,6 +9,8 @@ public class Fade_In : MonoBehaviour
 
     public GameObject Start_Content_Trigger;
 
+    public AudioSource Audio;
+
     public bool[] Fade_in;
 
     public int Talk_int;
@@ -46,7 +48,8 @@ public class Fade_In : MonoBehaviour
                 {
                     if (start)
                     {
-                        SceneManager.LoadScene(2);
+                        StartCoroutine(Sound_Fade());
+                        //SceneManager.LoadScene(2);
                         yield break;
                     }
                     if (!start)
@@ -87,6 +90,23 @@ public class Fade_In : MonoBehaviour
             }
 
         }
+
+    }
+
+    IEnumerator Sound_Fade()
+    {
+        while (true)
+        {
+            Audio.volume -= Time.deltaTime * 0.1f;
+            yield return null;
+            if (Audio.volume < 0)
+            {
+                SceneManager.LoadScene(2);
+                yield break;
+            }
+
+        }
+
 
     }
 

@@ -102,23 +102,35 @@ public class End_Fade : MonoBehaviour
         fadeCount = 0;
         while (true)
         {
-            fadeCount += 0.005f;
-            yield return new WaitForSeconds(0.02f);
+            fadeCount += 0.007f;
+            yield return new WaitForSeconds(0.01f);
 
             Black_look.color = new Color(255, 255, 255, fadeCount);
-            if (fadeCount > 0.25)
+            if (fadeCount > 0.65f)
             {
                 while (true)
                 {
-                    fadeCount -= 0.005f;
-                    yield return new WaitForSeconds(0.02f);
+                    fadeCount -= 0.007f;
+                    yield return new WaitForSeconds(0.01f);
 
                     Black_look.color = new Color(255, 255, 255, fadeCount);
-                    if (fadeCount < 0.10)
+                    if (fadeCount < 0.25f)
                     {
-                        yield return new WaitForSeconds(3f);
-                        StartCoroutine(fade_image_1());
-                        yield break;
+                        while (true)
+                        {
+                            fadeCount += 0.005f;
+                            yield return new WaitForSeconds(0.01f);
+
+                            Black_look.color = new Color(255, 255, 255, fadeCount);
+                            if (fadeCount > 0.7f)
+
+                            {
+                                yield return new WaitForSeconds(1f);
+                                StartCoroutine(fade_image_1());
+                                yield break;
+                            }
+                        }
+
                     }
                 }
             }
@@ -139,7 +151,7 @@ public class End_Fade : MonoBehaviour
                 ++i;
                 yield return new WaitForSeconds(3f);
             }
-            if (Fade_image_int[page] == i -1)
+            if (Fade_image_int[page] == i - 1)
             {
                 StartCoroutine(fade_image_2());
                 yield break;

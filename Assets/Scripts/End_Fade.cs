@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class End_Fade : MonoBehaviour
 {
@@ -21,13 +22,11 @@ public class End_Fade : MonoBehaviour
     public Image[] Fade_image_3;
     public Image[] Fade_image_4;
     public Image[] Fade_image_5;
+    public Image[] Fade_image_6;
 
     public int[] Fade_image_int;
 
     public float Time_set_next;
-
-
-    int page = 0;
 
 
 
@@ -142,15 +141,16 @@ public class End_Fade : MonoBehaviour
         while (true)
         {
             fadeCount += 0.01f;
+            Debug.Log(i);
             yield return new WaitForSeconds(0.01f);
             Fade_image_1[i].color = new Color(255, 255, 255, fadeCount);
             if (fadeCount > 1f)
             {
                 fadeCount = 0;
                 ++i;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
-            if (Fade_image_int[page] == i - 1)
+            if (Fade_image_int[0] == i)
             {
                 StartCoroutine(fade_image_2());
                 yield break;
@@ -165,15 +165,16 @@ public class End_Fade : MonoBehaviour
         while (true)
         {
             fadeCount += 0.01f;
+            Debug.Log(i);
             yield return new WaitForSeconds(0.01f);
             Fade_image_2[i].color = new Color(255, 255, 255, fadeCount);
             if (fadeCount > 1f)
-            {
+            { 
                 fadeCount = 0;
                 ++i;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
-            if (Fade_image_int[page] == i - 1)
+            if (Fade_image_int[1] == i)
             {
                 StartCoroutine(fade_image_3());
                 yield break;
@@ -194,9 +195,9 @@ public class End_Fade : MonoBehaviour
             {
                 fadeCount = 0;
                 ++i;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
-            if (Fade_image_int[page] == i - 1)
+            if (Fade_image_int[2] == i)
             {
                 StartCoroutine(fade_image_4());
                 yield break;
@@ -216,9 +217,9 @@ public class End_Fade : MonoBehaviour
             {
                 fadeCount = 0;
                 ++i;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
-            if (Fade_image_int[page] == i - 1)
+            if (Fade_image_int[3] == i)
             {
                 StartCoroutine(fade_image_5());
                 yield break;
@@ -239,11 +240,35 @@ public class End_Fade : MonoBehaviour
             {
                 fadeCount = 0;
                 ++i;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
-            if (Fade_image_int[page] == i - 1)
+            if (Fade_image_int[4] == i)
             {
-                //StartCoroutine(fade_image_3());
+                StartCoroutine(fade_image_6());
+                yield break;
+            }
+        }
+    }
+
+    IEnumerator fade_image_6()
+    {
+        int i = 0;
+        fadeCount = 0;
+        while (true)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Fade_image_6[i].color = new Color(255, 255, 255, fadeCount);
+            if (fadeCount > 1f)
+            {
+                fadeCount = 0;
+                ++i;
+                yield return new WaitForSeconds(2f);
+            }
+            if (Fade_image_int[5] == i)
+            {
+                yield return new WaitForSeconds(5f);
+                SceneManager.LoadScene(0);
                 yield break;
             }
         }

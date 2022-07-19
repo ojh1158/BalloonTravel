@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Text_Button : MonoBehaviour
 {
+    public GameObject star_Key;
     public GameObject textmanager;  // 텍스트 매니저 
     public GameObject player;       // 플레이어 옮기는 용도
 
@@ -71,9 +72,8 @@ public class Text_Button : MonoBehaviour
 
                 if (temp > 0.2f)
                 {
+                    star_Key.GetComponent<StarAni>().Star_Get(Dialog_Content, Dialog_FinerContent);
                     GameManager.isTalking = true;
-                    //gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
-                    //StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
                     Button_Actvie = false;
                     yield break;
                 }

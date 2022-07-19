@@ -13,8 +13,6 @@ public class Text_Button_Trigger : MonoBehaviour
 
     public GameObject active_button;    // 잠금을 푸는 대상
 
-    public GameObject star_Ain;
-
     bool Button_active;                 // 버튼 활성화
 
     public void OnTriggerEnter(Collider other)
@@ -30,8 +28,6 @@ public class Text_Button_Trigger : MonoBehaviour
             text_button2.GetComponent<Text_Button>().Button_Actvie = false;
             text_button3.GetComponent<Text_Button>().Button_Actvie = false;
             text_button4.GetComponent<Text_Button>().Button_Actvie = false;
-
-            star_Ain.GetComponent<StarAni>().Star_Get();
         }
         
     }

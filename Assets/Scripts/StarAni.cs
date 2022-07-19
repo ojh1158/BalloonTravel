@@ -13,10 +13,6 @@ public class StarAni : MonoBehaviour
 
     public GameObject[] star_get;
 
-    public int Dialog_Content; // 내부 대화 내용
-    public int Dialog_Name; // 내부 인물 이름
-    public int Dialog_FinerContent; // 마지막 페이지
-
     public GameObject textmanager;
     TextManager gamemanager;
 
@@ -33,12 +29,12 @@ public class StarAni : MonoBehaviour
         }
     }
 
-    public void Star_Get()
+    public void Star_Get(int Fs, int last)
     {
-        StartCoroutine(WaitTime());
+        StartCoroutine(WaitTime(Fs, last));
     }
 
-    IEnumerator WaitTime()
+    IEnumerator WaitTime(int Fs, int last)
     {
         isTlaking = true;
         fade_in_go.SetActive(true);
@@ -51,7 +47,7 @@ public class StarAni : MonoBehaviour
         star_ain[star_get_int].SetActive(false);
         yield return new WaitForSeconds(1.5f);
         all_star_reset();
-        StartCoroutine(Start_Talk());
+        StartCoroutine(Start_Talk(Fs, last));
         star_get_int++;
     }
 
@@ -65,14 +61,15 @@ public class StarAni : MonoBehaviour
         }
     }
 
-    IEnumerator Start_Talk()
+    IEnumerator Start_Talk(int Fs, int last)
     {
         yield return null;
         isTlaking = false;
         fade_in_go.SetActive(false);
         GameManager.isTalking = true;
+        Debug.Log(Fs);
         gamemanager = textmanager.GetComponent<TextManager>();                                      //참조를 위한 재선헌
-        StartCoroutine(gamemanager.Dialogue(Dialog_Name, Dialog_Content, Dialog_FinerContent));     //코루틴 시작 함수
+        StartCoroutine(gamemanager.Dialogue(Fs, Fs, last));     //코루틴 시작 함수
 
     }
 

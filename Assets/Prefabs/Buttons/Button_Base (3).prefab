@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6795990641090321531}
   - component: {fileID: 6795990641090321528}
   - component: {fileID: 6795990641090321533}
+  - component: {fileID: 8714429606019237560}
   - component: {fileID: 6795990641090321532}
   - component: {fileID: 6795990641090321535}
   m_Layer: 3
@@ -217,6 +218,21 @@ MonoBehaviour:
   Dialog_FinerContent: 100
   Button_Actvie: 0
   O: 1
+--- !u!114 &8714429606019237560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795990641090321524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29bd8519292b01428a80c641be088cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Star_ain: {fileID: 0}
+  start: 0
+  end: 0
 --- !u!114 &6795990641090321532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +251,6 @@ MonoBehaviour:
   text_button3: {fileID: 0}
   text_button4: {fileID: 6795990641090321524}
   active_button: {fileID: 6795990641090321524}
-  star_Ain: {fileID: 0}
 --- !u!65 &6795990641090321535
 BoxCollider:
   m_ObjectHideFlags: 0

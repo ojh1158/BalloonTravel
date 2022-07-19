@@ -248,7 +248,7 @@ public class DialogueManager : MonoBehaviour
                     Text_Ui.SetActive(false);
                     Butten.GetComponent<ButtenTrigger>().enabled = false;
 
-                    //moveNPC.GetComponent<NPC_Move>().npc_move();
+                    moveNPC.GetComponent<NPC_Move>().npc_move();
 
                     yield break;
                 }
